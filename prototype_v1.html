@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>園川神社みくじ</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace; /* 情報系らしい等幅フォント */
+            background: #0d1b2a; /* ダークモードで端末感を出す */
+            color: #00ffcc;
+            text-align: center;
+            padding: 20px;
+        }
+        .box {
+            border: 2px solid #00ffcc;
+            border-radius: 20px;
+            padding: 40px 20px;
+            max-width: 400px;
+            margin: 50px auto;
+            background: #1b263b;
+            box-shadow: 0 0 30px rgba(0,255,204,0.3);
+        }
+        #binary {
+            font-size: 80px;
+            font-weight: bold;
+            letter-spacing: 10px;
+            margin: 30px 0;
+            text-shadow: 0 0 15px #00ffcc;
+        }
+        #fortuneName {
+            font-size: 36px;
+            border-top: 1px dashed #00ffcc;
+            padding-top: 20px;
+        }
+        button {
+            background: transparent;
+            color: #00ffcc;
+            border: 2px solid #00ffcc;
+            padding: 15px 40px;
+            font-size: 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #00ffcc;
+            color: #0d1b2a;
+            box-shadow: 0 0 20px #00ffcc;
+        }
+        .note {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>🔮 BINARY FORTUNE 🔮</h2>
+        <p>ボタンを押して二進数を取得せよ</p>
+        <button onclick="drawFortune()">おみくじを引く</button>
+        <div id="binary">0000</div>
+        <div id="fortuneName">---</div>
+    </div>
+    <div class="note">
+        ▶ 表示されたコードを部員に見せて、おみくじカードを受け取ってね
+    </div>
+
+    <script>
+        // 情報系部活ならではの「二進数」と「運勢」の対応表
+        const fortuneMap = [
+            { binary: "0000", name: "大凶", desc: "Segmentation Fault" },
+            { binary: "0001", name: "凶", desc: "Syntax Error" },
+            { binary: "0010", name: "末吉", desc: "Warning" },
+            { binary: "0011", name: "小吉", desc: "200 OK" },
+            { binary: "0100", name: "中吉", desc: "Compile Success" },
+            { binary: "0101", name: "吉", desc: "Hello, World!" },
+            { binary: "0110", name: "大吉", desc: "Commit Accepted" },
+            { binary: "0111", name: "大大吉", desc: "Pull Request Merged!" },
+            { binary: "1000", name: "恋吉", desc: "Love Connection Established" },
+            { binary: "1001", name: "縁吉", desc: "New Friend Request" },
+            { binary: "1010", name: "学吉", desc: "Passed All Tests" },
+            { binary: "1011", name: "金吉", desc: "Salary Incremented" },
+            { binary: "1100", name: "極吉", desc: "Root Access Granted" },
+            { binary: "1101", name: "秘吉", desc: "Hidden Feature Unlocked" },
+            { binary: "1110", name: "神吉", desc: "Kernel Panic (in a good way)" },
+            { binary: "1111", name: "漢吉", desc: "Full Stack Master" }
+        ];
+
+        function drawFortune() {
+            const randomIndex = Math.floor(Math.random() * fortuneMap.length);
+            const selected = fortuneMap[randomIndex];
+            
+            document.getElementById('binary').innerText = selected.binary;
+            document.getElementById('fortuneName').innerHTML = `${selected.name}<br><span style="font-size:16px;">${selected.desc}</span>`;
+        }
+    </script>
+</body>
+</html>
