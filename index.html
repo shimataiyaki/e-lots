@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>二進数おみくじ</title> 
-<!--Version3.0(2026.4.12)-->
+    <!--Version3.0(2026.4.12)-->
     <style>
         /* 全体リセット・ベース */
         * {
@@ -130,14 +130,19 @@
             color: #2c3e4e;
             margin: 20px 0 10px;
             text-shadow: 2px 2px 0 #f0e0d0;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
         }
-　　　　#binary-suffix {
-    　　　　font-size: 30px;           /* 小さく */
-    　　　　letter-spacing: normal;
-    　　　　margin-left: 8px;
-    　　　　color: #7a5a4a;
-    　　　　font-weight: normal;
-　　　　}
+
+        #binary-suffix {
+            font-size: 30px;           /* 小さく */
+            letter-spacing: normal;
+            margin-left: 8px;
+            color: #7a5a4a;
+            font-weight: normal;
+        }
+
         .waiting-text {
             font-family: '游明朝', 'Yu Mincho', serif;
             font-size: 28px;
@@ -213,15 +218,15 @@
 
     <!-- おみくじ札 10枚（1列に並べる） -->
     <div class="cards-grid" id="cardsGrid">
-        <!-- JavaScriptで10枚生成することも可能だが、静的に記述 -->
+        <!-- JavaScriptで10枚生成 -->
     </div>
 
     <!-- 抽選結果表示スペース -->
     <div class="result-area">
         <div id="binary-display">
-    　　<span id="binary-number">----</span>
-   　　 <span id="binary-suffix"></span>
-　　</div>
+            <span id="binary-number">----</span>
+            <span id="binary-suffix"></span>
+        </div>
         <div id="waiting-message" class="waiting-text"></div>
     </div>
 
@@ -257,7 +262,8 @@
 
         // DOM要素
         const cardsGrid = document.getElementById('cardsGrid');
-        const binaryDisplay = document.getElementById('binary-display');
+        const binaryNumber = document.getElementById('binary-number');
+        const binarySuffix = document.getElementById('binary-suffix');
         const waitingMsg = document.getElementById('waiting-message');
 
         let isDrawing = false;      // 抽選中フラグ
@@ -278,16 +284,15 @@
 
         // ----- 札クリック時の処理 -----
         function onCardClick(e) {
-            const card = e.currentTarget;
             // 抽選中なら何もしない
             if (isDrawing) return;
 
             // 抽選開始
-            startDrawing(card);
+            startDrawing();
         }
 
         // ----- 抽選開始 -----
-        function startDrawing(clickedCard) {
+        function startDrawing() {
             isDrawing = true;
 
             // 全札を無効化（disabledクラス付与）
@@ -295,7 +300,8 @@
             allCards.forEach(card => card.classList.add('disabled'));
 
             // 表示を待機状態に
-            binaryDisplay.textContent = '';
+            binaryNumber.textContent = '';
+            binarySuffix.textContent = '';
             waitingMsg.textContent = '抽選中・・・';
 
             // 抽選結果を事前に決定
@@ -305,9 +311,9 @@
             // タイマーセット
             timeoutId = setTimeout(() => {
                 // 結果を表示
-                binaryDisplay.textContent = selectedBinary;
+                binaryNumber.textContent = selectedBinary;
                 binarySuffix.textContent = '(2)';   // ← 二進数であることを強調
-                waitingMsg.textContent = '';   // 「抽選中…」を消す
+                waitingMsg.textContent = '';         // 「抽選中…」を消す
 
                 // 札を再有効化
                 allCards.forEach(card => card.classList.remove('disabled'));
@@ -316,17 +322,11 @@
             }, WAIT_TIME);
         }
 
-        // ----- 初期表示：二進数は初期値「----」、待機メッセージは空 -----
+        // ----- 初期表示 -----
         function initializeDisplay() {
-            binaryDisplay.textContent = '----';
+            binaryNumber.textContent = '----';
+            binarySuffix.textContent = '';
             waitingMsg.textContent = '';
-        }
-
-        // ----- フッターのリンク先は適宜差し替えてください -----
-        // (必要に応じてURLをセット)
-        function setFooterLinks() {
-            // GitHub / note / テクニカルサマリー のaタグを取得してhref設定も可能
-            // ここでは仮置き
         }
 
         // 初期化実行
