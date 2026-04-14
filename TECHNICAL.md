@@ -31,18 +31,28 @@ graph LR
 ## 2. 状態遷移設計
 
 抽選処理はシンプルな3状態で管理しています。isDrawing フラグと CSS クラス .disabled の二重ロックにより、連打や誤操作を防止します。
-
-```mermaid
 stateDiagram-v2
     [*] --> IDLE
     IDLE --> DRAWING : 札クリック
     DRAWING --> RESULT : setTimeout(2.5s)
     RESULT --> IDLE : 自動復帰
 
-    note right of IDLE : 全札クリック可能\nbinaryNumber: "----"
-    note right of DRAWING : 全札に .disabled 付与\npointer-events: none\nwaitingMsg: "抽選中・・・"
-    note right of RESULT : 二進数表示\nbinarySuffix: "(2)"\n.disabled 解除
-```
+    note right of IDLE
+      全札クリック可能
+      binaryNumber: "----"
+    end note
+
+    note right of DRAWING
+      全札に .disabled 付与
+      pointer-events: none
+      waitingMsg: "抽選中・・・"
+    end note
+
+    note right of RESULT
+      二進数表示
+      binarySuffix: "(2)"
+      .disabled 解除
+    end note
 
 ## 3. UI 実装の詳細
 
