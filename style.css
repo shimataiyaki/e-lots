@@ -1,0 +1,294 @@
+/* ============================================
+   style.css - 二進数おみくじ スタイルシート
+   ============================================ */
+
+/* ----- 全体リセット ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ffffff;
+    font-family: '游明朝', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+    color: #3a2c1f;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 固定ヘッダー分の余白（高さ80px想定） */
+    padding-top: 100px;
+}
+
+/* ----- 固定ヘッダー ----- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    z-index: 1000;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0b8a8;
+}
+
+.header-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* タイトル */
+.site-title a {
+    font-family: '游明朝', 'Yu Mincho', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #ad241f;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: opacity 0.2s;
+}
+.site-title a:hover {
+    opacity: 0.7;
+}
+
+/* ナビゲーション */
+.site-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+.site-nav a {
+    font-family: '游明朝', 'Yu Mincho', serif;
+    font-size: 18px;
+    color: #5a4a3e;
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+.site-nav a:hover {
+    color: #ad241f;
+    border-bottom-color: #ad241f;
+}
+
+/* ハンバーガーボタン（デフォルト非表示） */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 32px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+.menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: #ad241f;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+/* モバイル表示 */
+@media (max-width: 600px) {
+    .menu-toggle {
+        display: flex;
+    }
+    .site-nav {
+        position: fixed;
+        top: 80px;
+        right: 0;
+        width: 200px;
+        background: #ffffff;
+        box-shadow: -2px 2px 8px rgba(0,0,0,0.1);
+        border-radius: 0 0 0 12px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        padding: 20px 0;
+    }
+    .site-nav.active {
+        transform: translateX(0);
+    }
+    .site-nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+    .site-nav li {
+        text-align: center;
+    }
+    .site-nav a {
+        display: block;
+        padding: 16px 0;
+        border-bottom: none;
+        font-size: 18px;
+    }
+    .site-nav a:hover {
+        background: #faf0e8;
+        border-bottom: none;
+    }
+    body {
+        padding-top: 80px;
+    }
+}
+
+/* ----- メインコンテンツ（既存スタイル） ----- */
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subtitle {
+    font-size: 22px;
+    color: #8b5e3c;
+    margin: 10px 0 30px;
+    border-bottom: 2px solid #e0b8a8;
+    padding-bottom: 12px;
+    display: inline-block;
+}
+
+/* おみくじ札グリッド */
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px 30px;
+    margin: 20px 0 50px;
+    max-width: 1200px;
+}
+
+.omikuji-card {
+    width: 90px;
+    height: 140px;
+    background-color: #c84b3f;
+    color: #f9e076;
+    border-radius: 6px 6px 4px 4px;
+    box-shadow: 
+        2px 2px 6px rgba(0,0,0,0.2),
+        -2px 2px 6px rgba(0,0,0,0.1),
+        0px 4px 6px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: '游明朝', 'Yu Mincho', serif;
+    user-select: none;
+}
+.omikuji-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+        4px 4px 8px rgba(0,0,0,0.25),
+        -4px 4px 8px rgba(0,0,0,0.15),
+        0px 8px 10px rgba(0,0,0,0.2);
+}
+.omikuji-card.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    filter: grayscale(0.3);
+    transform: translateY(2px);
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+/* 抽選結果表示エリア */
+.result-area {
+    text-align: center;
+    margin: 20px 0 40px;
+    min-height: 160px;
+}
+#binary-display {
+    font-family: 'Courier New', monospace;
+    font-size: 90px;
+    font-weight: bold;
+    letter-spacing: 20px;
+    color: #2c3e4e;
+    margin: 20px 0 10px;
+    text-shadow: 2px 2px 0 #f0e0d0;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+#binary-suffix {
+    font-size: 30px;
+    letter-spacing: normal;
+    margin-left: 8px;
+    color: #7a5a4a;
+    font-weight: normal;
+}
+.waiting-text {
+    font-family: '游明朝', 'Yu Mincho', serif;
+    font-size: 28px;
+    color: #a75b4f;
+    margin: 30px 0;
+    letter-spacing: 4px;
+}
+
+/* 案内文 */
+.guide-text {
+    font-size: 18px;
+    color: #5a4a3e;
+    background: #faf0e8;
+    padding: 16px 30px;
+    border-radius: 40px;
+    margin: 30px 0 50px;
+    border-left: 6px solid #c84b3f;
+    display: inline-block;
+    scroll-margin-top: 100px; /* 固定ヘッダーに隠れないように */
+}
+
+/* フッター */
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #7f6e5d;
+    font-size: 16px;
+}
+.footer a {
+    color: #b34e4a;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: 500;
+    border-bottom: 1px dotted #c84b3f;
+}
+.footer a:hover {
+    border-bottom: 1px solid #c84b3f;
+}
+
+/* レスポンシブ */
+@media (max-width: 800px) {
+    .omikuji-card {
+        width: 70px;
+        height: 110px;
+        font-size: 18px;
+    }
+    #binary-display {
+        font-size: 60px;
+        letter-spacing: 12px;
+    }
+}
+@media (max-width: 500px) {
+    .cards-grid {
+        gap: 12px;
+    }
+}
