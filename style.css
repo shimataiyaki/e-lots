@@ -1,7 +1,7 @@
 /* ============================================
    Webアプリ用：二進数おみくじ
-   ヘッダー／フッターは「Webサイト用」系譜
-   おみくじ本体は和モチーフを活かす
+   フォント：游明朝（和モチーフ）
+   構造：Webサイト用系譜（ヘッダー／フッター／直線）
    ============================================ */
 
 * {
@@ -27,7 +27,7 @@
 }
 
 body {
-     font-family: '游明朝', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+    font-family: '游明朝', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.8;
@@ -57,9 +57,10 @@ body {
 }
 
 .site-title {
+    font-family: '游明朝', 'Yu Mincho', serif;
     font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     color: #0f172a;
     text-decoration: none;
 }
@@ -131,6 +132,7 @@ body {
 }
 
 .nav-menu a {
+    font-family: '游明朝', 'Yu Mincho', serif;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
@@ -160,8 +162,9 @@ body {
 }
 
 .subtitle {
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-family: '游明朝', 'Yu Mincho', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
     color: var(--accent-color);
     margin: 0 0 2rem;
     padding-bottom: 0.5rem;
@@ -196,6 +199,7 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     writing-mode: vertical-rl;
     text-orientation: upright;
+    font-family: '游明朝', 'Yu Mincho', serif;
     font-size: 22px;
     font-weight: 600;
     letter-spacing: 2px;
@@ -244,6 +248,7 @@ body {
 }
 
 .waiting-text {
+    font-family: '游明朝', 'Yu Mincho', serif;
     font-size: 1.2rem;
     color: var(--accent-color);
     margin: 0;
@@ -252,6 +257,7 @@ body {
 
 /* ----- 案内文（シンプルに左ボーダーのみ） ----- */
 .guide-text {
+    font-family: '游明朝', 'Yu Mincho', serif;
     font-size: 1rem;
     color: var(--text-color);
     background: none;
@@ -274,7 +280,11 @@ body {
 }
 
 /* 角丸ゼロ統一 */
-.site-header, .nav-menu, .omikuji-card, .guide-text, .app-footer {
+.site-header,
+.nav-menu,
+.omikuji-card,
+.guide-text,
+.app-footer {
     border-radius: 0 !important;
 }
 
@@ -301,5 +311,8 @@ body {
     #binary-display {
         font-size: 48px;
         letter-spacing: 8px;
+    }
+    .subtitle {
+        font-size: 1.5rem;
     }
 }
