@@ -1,6 +1,6 @@
 /* ============================================
    script.js - 二進数おみくじ 最終版
-   16枚札・リセットボタン機能
+   固定ヘッダー + 16枚札 + リセットボタン
    ============================================ */
 
 (function() {
@@ -95,6 +95,38 @@
         waitingMsg.textContent = '';
     }
 
+    // ---------- ハンバーガーメニュー制御 ----------
+    function setupMobileMenu() {
+        const toggleBtn = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (!toggleBtn || !navMenu) return;
+
+        toggleBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('show');
+            this.classList.toggle('active');
+            const expanded = navMenu.classList.contains('show');
+            this.setAttribute('aria-expanded', expanded);
+        });
+
+        // メニュー外クリックで閉じる
+        document.addEventListener('click', function(e) {
+            if (!toggleBtn.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('show');
+                toggleBtn.classList.remove('active');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // メニュー内リンクをタップしたら閉じる
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show');
+                toggleBtn.classList.remove('active');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
     // ---------- スムーススクロール（遊び方リンク用） ----------
     function setupSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -115,6 +147,7 @@
     function init() {
         buildCards();
         initializeDisplay();
+        setupMobileMenu();
         setupSmoothScroll();
 
         if (resetButton) {
