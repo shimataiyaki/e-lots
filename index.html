@@ -12,11 +12,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- メインコンテンツ（ヘッダーなし） -->
+
+    <!-- 固定ヘッダー（復活） -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="./" class="site-title">二進数おみくじ</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="メニュー" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <div class="nav-menu-inner">
+                    <li><a href="#howto">遊び方</a></li>
+                    <li><a href="https://note.com/shimataiyaki" target="_blank" rel="noopener">note</a></li>
+                    <li><a href="https://github.com/shimataiyaki/binary-omikuji" target="_blank" rel="noopener">GitHub</a></li>
+                </div>
+            </ul>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
     <main class="app-main">
         <div class="container">
-            <!-- タイトル -->
-            <h1 class="site-title">二進数おみくじ</h1>
             <!-- 見出し -->
             <div class="subtitle">おみくじを引く</div>
 
@@ -34,7 +52,7 @@
                 <button id="resetButton" class="reset-button">次の方へ</button>
             </div>
 
-            <!-- 案内文 -->
+            <!-- 案内文（遊び方アンカー） -->
             <div id="howto" class="guide-text">
                 ▶ 表示された数字を部員に見せて、おみくじの紙を受け取ってください。
             </div>
