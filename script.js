@@ -7,7 +7,7 @@
     'use strict';
 
     // ---------- 抽選データ ----------
-    const BINARY_LIST = [
+    const NUMBER_LIST = [
         "〇一", "〇二", "〇三", "〇四",
         "〇五", "〇六", "〇七", "〇八",
         "〇九", "一〇", "一一", "一二",
@@ -18,8 +18,8 @@
 
     // DOM要素
     const cardsGrid = document.getElementById('cardsGrid');
-    const binaryNumber = document.getElementById('binary-number');
-    const binarySuffix = document.getElementById('binary-suffix');
+    const binaryNumber = document.getElementById('binary-number');   // IDはそのまま
+    const binarySuffix = document.getElementById('binary-suffix'); // IDはそのまま
     const waitingMsg = document.getElementById('waiting-message');
     const resetButton = document.getElementById('resetButton');
 
@@ -56,11 +56,11 @@
         binarySuffix.textContent = '';
         waitingMsg.textContent = '抽選中・・・';
 
-        const randomIndex = Math.floor(Math.random() * BINARY_LIST.length);
-        const selectedBinary = BINARY_LIST[randomIndex];
+        const randomIndex = Math.floor(Math.random() * NUMBER_LIST.length);
+        const selectedNumber = NUMBER_LIST[randomIndex];
 
         timeoutId = setTimeout(() => {
-            binaryNumber.textContent = selectedBinary;
+            binaryNumber.textContent = selectedNumber;
             binarySuffix.textContent = '番';
             waitingMsg.textContent = '';
 
