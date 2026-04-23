@@ -388,3 +388,11 @@ body {
         font-size: 1.5rem;
     }
 }
+
+.footer-credit {
+    color: var(--muted-text);
+}
+.footer-credit a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
