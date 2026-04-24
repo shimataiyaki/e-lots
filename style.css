@@ -1,7 +1,7 @@
 /* ============================================
-   style.css - デジタルおみくじ（e-mikuji）本番版
+   style.css - デジタルおみくじ（E-LOTs）本番版
    固定ヘッダー + 16枚札 + ポップアップ統合
-   左ボーダー完全削除版
+   枠線のみの札・グレー薄影・左ボーダー削除
    ============================================ */
 
 * {
@@ -16,8 +16,7 @@
     --border-color: #e2e8f0;
     --muted-text: #64748b;
     --accent-color: #ad241f;
-    --card-bg: #c84b3f;
-    --card-text: #f9e076;
+    --card-shadow: rgba(105, 105, 105, 0.08);  /* グレー・薄影 */
 }
 
 body {
@@ -198,7 +197,7 @@ body {
     padding: 0.5rem 0;
 }
 
-/* ----- おみくじ札 ----- */
+/* ----- おみくじ札（枠線のみ・グレー薄影） ----- */
 .cards-grid {
     display: flex;
     flex-wrap: wrap;
@@ -212,10 +211,11 @@ body {
 .omikuji-card {
     width: 90px;
     height: 140px;
-    background-color: var(--card-bg);
-    color: var(--card-text);
+    background-color: transparent;            /* 塗りつぶしなし */
+    color: var(--text-color);                 /* 黒系文字 */
+    border: 2px solid var(--accent-color);    /* 朱色の枠線 */
     border-radius: 0;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+    box-shadow: 4px 4px 0 var(--card-shadow); /* グレー薄影 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,20 +228,18 @@ body {
     font-weight: 600;
     letter-spacing: 2px;
     user-select: none;
-    border: 1px solid rgba(0,0,0,0.05);
 }
 
 .omikuji-card:hover {
     transform: translateY(-4px);
-    box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+    box-shadow: 6px 6px 0 rgba(105, 105, 105, 0.12); /* ホバー時は少し濃く */
 }
 
 .omikuji-card.disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     pointer-events: none;
-    filter: grayscale(0.2);
     transform: translateY(2px);
-    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 0 var(--card-shadow);
 }
 
 /* 抽選中メッセージ */
@@ -387,12 +385,4 @@ body {
     .subtitle {
         font-size: 1.5rem;
     }
-}
-
-.footer-credit {
-    color: var(--muted-text);
-}
-.footer-credit a {
-    color: var(--accent-color);
-    text-decoration: none;
 }
