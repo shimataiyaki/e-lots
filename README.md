@@ -1,10 +1,10 @@
-# e-mikuji（デジタルおみくじ）テクニカルサマリー
+# E-LOTs
 
 ## 1. 概要
-- **作品名**：e-mikuji（公開名称：デジタルおみくじ）
+- **名称**：E-LOTs（公開名称：デジタルおみくじ）
 - **リリース時期**：2026年4月（文化祭展示向け）
-- **公開URL**：[https://shimataiyaki.github.io/e-mikuji/](https://shimataiyaki.github.io/e-mikuji/)
-- **リポジトリ**：[https://github.com/shimataiyaki/e-mikuji](https://github.com/shimataiyaki/e-mikuji)
+- **公開URL**：[https://shimataiyaki.github.io/e-mikuji/](https://shimataiyaki.github.io/e-lots/)
+- **リポジトリ**：[https://github.com/shimataiyaki/e-mikuji](https://github.com/shimataiyaki/e-lots)
 
 ## 2. 開発の背景
 
